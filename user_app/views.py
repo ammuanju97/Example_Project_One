@@ -91,3 +91,7 @@ class PostDisplayView(View):
         return render(
             request, "user_activity/view_post.html", {"post_details": post_details}
         )
+
+
+class EditPOst(View):
+    pass
