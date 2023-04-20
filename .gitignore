@@ -1,0 +1,7 @@
+.env
+migrations
+exampleone
+__pycache__
+db.sqlite3
+uploads
+static
