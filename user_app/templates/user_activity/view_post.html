@@ -38,15 +38,48 @@
     </div>
   </nav>
   <!-- <h1>Hello, world!</h1> -->
+ 
 
- {% for post in post_details %}
- {{ post.post_name }} <br>
- {{ post.content }} <br>
-                  {{ post.category }} <br>
-                  <img src="{{post.image.url}}"/>
-                 
- {% endfor %}
+
+
+
+
+
+
+<div class="container py-3">
+	<h2>Products</h2>
+	<hr>
+	<br>
   
+	 <div class="row">
+    {% for post in post_details %}  
+	    <div class="col-sm-4 col-md-4">
+      
+	      	<div class="card h-100" style="border:none">
+	        	<img src="{{post.image.url}}" class="card-img-top" alt="Jaybird X3" width="20%" height="20%">
+	        	<div class="card-body">
+	          		<h5 class="card-title">{{ post.post_name }}</h5>
+	            	<p class="card-text text-muted" style="font-size:12px">{{ post.category }} </p>
+	            	<p class="card-text">{{ post.content }}</p>
+	            	<a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
+	        	</div>
+	      	</div>
+	    </div>
+	
+      {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

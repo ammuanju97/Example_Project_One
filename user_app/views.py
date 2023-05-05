@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, View, CreateView
+from django.views.generic import TemplateView, View, CreateView, UpdateView
 from core.models import SignUpModel
 from .forms import EditProfileForm, ChangePasswordForm, AddPostForm
 from django.contrib.auth import authenticate
@@ -91,3 +91,29 @@ class PostDisplayView(View):
         return render(
             request, "user_activity/view_post.html", {"post_details": post_details}
         )
+
+
+class EditPostView(View):
+
+    def get(self, request,id):
+        post_details = AddPost.objects.get(id=id)
+        form = AddPostForm(instance=post_details)
+        return render(request, "user_activity/edit_post.html", {"form": form})
+
+    def post(self, request,id):
+        post_details = AddPost.objects.get(id=id)
+        form = AddPostForm(request.POST, instance=post_details)
+
+        if form.is_valid():
+            form.save()
+            return redirect("view_post")
+        return render(request, "user_activity/edit_post.html", {"form": form})
+    
+    
+class DeletePostView(View):
+
+    def get(self, request,id):
+        post_details = AddPost.objects.get(id=id)
+        post_details.delete()
+        return redirect("view_post")
+
