@@ -102,7 +102,7 @@ class EditPostView(View):
 
     def post(self, request,id):
         post_details = AddPost.objects.get(id=id)
-        form = AddPostForm(request.POST, instance=post_details)
+        form = AddPostForm(request.POST, request.FILES, instance=post_details)
 
         if form.is_valid():
             form.save()

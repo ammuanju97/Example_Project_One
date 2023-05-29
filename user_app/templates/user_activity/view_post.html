@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-  <title>User Profile</title>
+  <title>View Post</title>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -38,50 +38,38 @@
     </div>
   </nav>
   <!-- <h1>Hello, world!</h1> -->
- 
 
+  <div class="container py-3">
+    <h2>Products</h2>
+    <hr>
+    <br>
 
+    <div class="row">
+      {% for post in post_details %}
+      <div class="col-sm-4 col-md-4">
 
+        <div class="card h-100" style="border:none">
+          <img src="{{post.image.url}}" class="card-img-top" alt="Jaybird X3" width="20%" height="20%">
+          <div class="card-body">
+            <h5 class="card-title">{{ post.post_name }}</h5>
+            <p class="card-text text-muted" style="font-size:12px">{{ post.category }} </p>
+            <p class="card-text">{{ post.content }}</p>
+            <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger" 
+            onclick="return confirm('Are you sure do you want to delete {{post.post_name}}?')">Delete</a>
+          </div>
+        </div>
+      </div>
 
-
-
-
-<div class="container py-3">
-	<h2>Products</h2>
-	<hr>
-	<br>
-  
-	 <div class="row">
-    {% for post in post_details %}  
-	    <div class="col-sm-4 col-md-4">
-      
-	      	<div class="card h-100" style="border:none">
-	        	<img src="{{post.image.url}}" class="card-img-top" alt="Jaybird X3" width="20%" height="20%">
-	        	<div class="card-body">
-	          		<h5 class="card-title">{{ post.post_name }}</h5>
-	            	<p class="card-text text-muted" style="font-size:12px">{{ post.category }} </p>
-	            	<p class="card-text">{{ post.content }}</p>
-	            	<a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit</a>
-                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete</a>
-	        	</div>
-	      	</div>
-	    </div>
-	
       {% endfor %}
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
+  </div>
+  <script>
+    
+    
+  </script> 
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
